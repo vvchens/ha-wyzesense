@@ -74,7 +74,7 @@ def findDongle():
 def setup_platform(hass, config, add_entites, discovery_info=None):
     if config[CONF_DEVICE].lower() == 'auto': 
         config[CONF_DEVICE] = findDongle()
-    _LOGGER.debug("WYZESENSE v0.0.9")
+    _LOGGER.debug("WYZESENSE v0.0.11")
     _LOGGER.debug("Attempting to open connection to hub at " + config[CONF_DEVICE])
 
     forced_initial_states = config[CONF_INITIAL_STATE]
@@ -83,11 +83,20 @@ def setup_platform(hass, config, add_entites, discovery_info=None):
     def on_event(ws, event):
         if event.Type == 'state':
             (sensor_type, sensor_state, sensor_battery, sensor_signal) = event.Data
+            if sensor_type == "motion":
+                device_class = DEVICE_CLASS_MOTION
+            elif sensor_type == "switch":
+                device_class = DEVICE_CLASS_DOOR
+            elif sensor_type == "leak":
+                device_class = DEVICE_CLASS_MOISTURE
+            else:
+                device_class = None
+
             data = {
                 ATTR_AVAILABLE: True,
                 ATTR_MAC: event.MAC,
                 ATTR_STATE: 1 if sensor_state == "open" or sensor_state == "active" or sensor_state == "wet" else 0,
-                ATTR_DEVICE_CLASS: DEVICE_CLASS_MOTION if sensor_type == "motion" else DEVICE_CLASS_DOOR if sensor_type == "door" else DEVICE_CLASS_MOISTURE,
+                ATTR_DEVICE_CLASS: device_class,
                 DEVICE_CLASS_TIMESTAMP: event.Timestamp.isoformat(),
                 ATTR_RSSI: sensor_signal * -1,
                 ATTR_BATTERY_LEVEL: sensor_battery
