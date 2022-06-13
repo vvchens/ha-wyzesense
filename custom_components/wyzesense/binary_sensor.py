@@ -89,6 +89,8 @@ def setup_platform(hass, config, add_entites, discovery_info=None):
                 device_class = DEVICE_CLASS_DOOR
             elif sensor_type == "leak":
                 device_class = DEVICE_CLASS_MOISTURE
+            elif sensor_type == "leak:temperature":
+                return # ignore
             else:
                 device_class = None
 
