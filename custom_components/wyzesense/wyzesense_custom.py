@@ -496,12 +496,12 @@ class Dongle(object):
         try:
             self._Inquiry()
 
-            # self.ENR = self._GetEnr([0x30303030] * 4)
-            # self.MAC = self._GetMac()
-            # log.debug("Dongle MAC is [%s]", self.MAC)
+            self.ENR = self._GetEnr([0x30303030] * 4)
+            self.MAC = self._GetMac()
+            log.debug("Dongle MAC is [%s]", self.MAC)
 
-            # self.Version = self._GetVersion()
-            # log.debug("Dongle version: %s", self.Version)
+            self.Version = self._GetVersion()
+            log.debug("Dongle version: %s", self.Version)
 
             self._FinishAuth()
         except:
