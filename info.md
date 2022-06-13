@@ -1,4 +1,10 @@
 ## Changelog
+### 0.0.11 - Add support for Neos Leak Sensors
+@jellybob
+jellybob committed on Jul 6, 2020
+@jellybob
+jellybob committed on Jul 6, 2020
+
 ### 0.0.9 - More stability fixes
 Prevents wyzesense from stopping when receiving an unparseable packet. Should help with stability issues.
 Thanks to @raetha for the fix.

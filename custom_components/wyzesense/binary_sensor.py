@@ -5,7 +5,7 @@ v0.0.9
 
 """
 
-from .wyzesense_custom import *
+from .wyzesense import *
 import logging
 import voluptuous as vol
 import json

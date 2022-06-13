@@ -3,7 +3,7 @@
     "domain": "wyzesense",
     "name": "Wyze Sense Component",
     "documentation": "https://github.com/vvchens/wyzesense",
-    "requirements": ["wyzesense==0.0.4","retry==0.9.2"],
+    "requirements": ["retry==0.9.2"],
     "dependencies": [],
     "codeowners": ["@vvchens"],
     "iot_class": "local_push"

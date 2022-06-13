@@ -24,7 +24,7 @@ import re
 import sys
 import logging
 import binascii
-import wyzesense_custom as wyzesense
+import wyzesense
 
 
 def on_event(ws, e):
